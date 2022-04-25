@@ -1,31 +1,34 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Assets.Scripts;
+using UnityEngine.Rendering;
 
 [ExecuteInEditMode]
 [RequireComponent(typeof(MeshFilter))]
 public class Asteroid : MonoBehaviour
 {
+    int oldSeed;
+    [Range(0f, 10000f)]
     public int seed;
 
     private int oldResolution;
-    [Range(4, 14)] public int resolution = 9;
+    [Range(5, 20)] public int resolution = 20;
     private int oldScale;
-    [Range(1, 10)] public int scale = 5;
+    [Range(1, 100)] public int scale = 1;
     private float oldTerrainLevel;
-    [Range(0f, .999f)] public float terrainLevel = .5f;
+    [Range(0f, 1f)] public float terrainLevel = .5f;
 
     MeshFilter meshFilter;
     List<Vector3> vertices;
     List<int> triangles;
     float[,,] terrainMap;
 
-    private void Awake()
+    private void Start()
     {
         meshFilter = GetComponent<MeshFilter>();
         vertices = new List<Vector3>();
         triangles = new List<int>();
-        
+
         ClearMesh();
         PopulateTerrainMap();
         CreateMeshData();
@@ -34,7 +37,7 @@ public class Asteroid : MonoBehaviour
 
     private void Update()
     {
-        if (oldResolution!=resolution || oldTerrainLevel != terrainLevel || oldScale != scale)
+        if (oldResolution != resolution || oldTerrainLevel != terrainLevel || oldScale != scale || oldSeed != seed)
         {
             ClearMesh();
             PopulateTerrainMap();
@@ -45,6 +48,28 @@ public class Asteroid : MonoBehaviour
         oldResolution = resolution;
         oldScale = scale;
         oldTerrainLevel = terrainLevel;
+        oldSeed = seed;
+    }
+
+    void ClearMesh()
+    {
+        vertices.Clear();
+        triangles.Clear();
+    }
+
+    void BuildMesh()
+    {
+        var mesh = new Mesh
+        {
+            indexFormat = IndexFormat.UInt32,
+            vertices = vertices.ToArray(),
+            triangles = triangles.ToArray()
+        };
+
+        mesh.RecalculateBounds();
+        mesh.RecalculateNormals();
+
+        meshFilter.mesh = mesh;
     }
 
     void CreateMeshData()
@@ -68,11 +93,11 @@ public class Asteroid : MonoBehaviour
     void PopulateTerrainMap()
     {
         terrainMap = new float[resolution + 1, resolution + 1, resolution + 1];
-        
+
         for (int x = 0; x < resolution + 1; x++)
             for (int y = 0; y < resolution + 1; y++)
                 for (int z = 0; z < resolution + 1; z++)
-                    terrainMap[x, y, z] = GetRandomNumber(x, y, z, resolution);
+                    terrainMap[x, y, z] = GetValue(x, y, z);
     }
 
     int GetCubeConfiguration(float[] cube)
@@ -80,9 +105,9 @@ public class Asteroid : MonoBehaviour
         int configurationIndex = 0;
 
         for (int i = 0; i < 8; i++)
-            if (cube[i] > terrainLevel)
+            if (cube[i] >= terrainLevel)
                 configurationIndex |= 1 << i;
-        
+
         return configurationIndex;
     }
 
@@ -116,32 +141,14 @@ public class Asteroid : MonoBehaviour
         }
     }
 
-    void ClearMesh()
-    {
-        vertices.Clear();
-        triangles.Clear();
-    }
-
-    void BuildMesh()
-    {
-        var mesh = new Mesh
-        {
-            vertices = vertices.ToArray(),
-            triangles = triangles.ToArray()
-        };
-
-        mesh.RecalculateBounds();
-        mesh.RecalculateNormals();
-
-        meshFilter.mesh = mesh;
-    }
-
-    float GetRandomNumber(int x, int y, int z, int resolution)
+    float GetValue(int x, int y, int z)
     {
         if (x == 0 || y == 0 || z == 0 || x == resolution || y == resolution || z == resolution)
             return 1;
 
         Random.InitState(seed + x + (y * resolution) + (z * resolution * resolution));
         return Random.Range(0f, 1f);
+
+        //return NoiseCreator.GetNoiseAt(x, y, z);
     }
 }
