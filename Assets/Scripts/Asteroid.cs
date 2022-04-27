@@ -16,7 +16,7 @@ public class Asteroid : MonoBehaviour
     private int oldScale;
     [Range(1, 100)] public int scale = 1;
     private float oldTerrainLevel;
-    [Range(0f, 1f)] public float terrainLevel = .5f;
+    [Range(0f, 20)] public float terrainLevel = 5f;
 
     MeshFilter meshFilter;
     List<Vector3> vertices;
@@ -144,11 +144,14 @@ public class Asteroid : MonoBehaviour
     float GetValue(int x, int y, int z)
     {
         if (x == 0 || y == 0 || z == 0 || x == resolution || y == resolution || z == resolution)
-            return 1;
+            return resolution+1;
+
+        var midPoint = resolution / 2;
+        var value = (float)Mathf.Abs(x-midPoint) + Mathf.Abs(y-midPoint) + Mathf.Abs(z-midPoint);
 
         Random.InitState(seed + x + (y * resolution) + (z * resolution * resolution));
-        return Random.Range(0f, 1f);
+        value += Random.Range(0f, 2f);
 
-        //return NoiseCreator.GetNoiseAt(x, y, z);
+        return value;
     }
 }
