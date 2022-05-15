@@ -16,18 +16,21 @@ public class TestInput : MonoBehaviour
 
     public color currentColor;
 
-    public MeshRenderer meshRenderer;
+    private MeshRenderer meshRenderer;
 
+    public Material material;
+    public Material material2;
+    
     // Start is called before the first frame update
     void Start()
     {
-        currentColor = color.red;
+        currentColor = color.blue;
         meshRenderer = GetComponent<MeshRenderer>();
     }
 
     // Update is called once per frame
     void Update()
-    {        
+    {
         var joystick = Joystick.current;
 
         if (joystick == null)
@@ -90,6 +93,7 @@ public class TestInput : MonoBehaviour
         if (joystickControls_L1.IsPressed())
         {
             Debug.Log("joystickControls_L1 Pressed");
+            this.meshRenderer.material = material;
         }
 
         // 03: R3
@@ -105,6 +109,7 @@ public class TestInput : MonoBehaviour
         if (joystickControls_L3.IsPressed())
         {
             Debug.Log("joystickControls_L3 Pressed");
+            this.meshRenderer.material = material2;
         }
 
         // 05: Square
@@ -222,15 +227,17 @@ public class TestInput : MonoBehaviour
 
 
         /*
+        // Test method to detect control inputs.
         for (int x = 0; x < joystick.allControls.Count; x++)
         {
             if (joystick.allControls[x].IsPressed())
             {
-                Debug.Log("Joystick Input Pressed: " + x);
+                // Debug.Log("Joystick Input Pressed: " + x);
+                Debug.Log("Joystick Input [" + x + "] Pressed: " + joystick.allControls[x].ReadValueAsObject().ToString());
             }
         }
         */
-
+        
         /*
             [joystick.allControls[*] Mappings]:
             00: Joystick position
@@ -273,10 +280,6 @@ public class TestInput : MonoBehaviour
             37: 
             38: 
             39: 
-
-
-
-
         */
     }
 }
