@@ -1,0 +1,366 @@
+{
+    "name": "Test",
+    "maps": [
+        {
+            "name": "Test  HOTAS Mapping",
+            "id": "a71048de-1d38-4654-b09a-1890bc9bbbb0",
+            "actions": [
+                {
+                    "name": "Move",
+                    "type": "Value",
+                    "id": "e21641dc-590c-4039-a677-40a2a6ba508e",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "Thruster",
+                    "type": "Button",
+                    "id": "cb5e1e52-cd4e-49f5-8f44-c52880e1596e",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Fire",
+                    "type": "Button",
+                    "id": "b0f67a1a-2e4a-4099-8195-9c664291b1bb",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Pause",
+                    "type": "Button",
+                    "id": "28f90825-3514-4b76-8b5a-00f193a44e79",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Select",
+                    "type": "Button",
+                    "id": "0c7fdf2d-b6db-4985-ac2f-137d71625e72",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Thruster Twist",
+                    "type": "Value",
+                    "id": "a69a2998-bd69-4bd7-9d32-66c05533d45a",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "Stick Twist",
+                    "type": "Button",
+                    "id": "1e502716-c522-43eb-a401-7d4fbbfe91ad",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Look",
+                    "type": "Value",
+                    "id": "736c21d3-7191-4da5-992a-fc7475478690",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "Missle",
+                    "type": "Button",
+                    "id": "5e2e4694-f79b-47ef-a871-f4e22be820b2",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Weapon 1",
+                    "type": "Button",
+                    "id": "009afdab-8cde-43d8-aa4c-9a7236c929ff",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Weapon 2",
+                    "type": "Button",
+                    "id": "0c2e8f7b-e450-428e-81e9-4b73813a09fb",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Weapon 3",
+                    "type": "Button",
+                    "id": "0d0be49d-af3d-45e6-907f-421ef43d0528",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Weapon 4",
+                    "type": "Button",
+                    "id": "a1bfe5ca-9c2d-4af4-831c-d9d641b6e408",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Weapon 5",
+                    "type": "Button",
+                    "id": "dc95cfa7-8fcb-4ec4-a84d-a91af4070ce0",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Weapon 6",
+                    "type": "Button",
+                    "id": "931502eb-57f1-449d-8cb1-bf50f61ee17a",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Weapon 7",
+                    "type": "Button",
+                    "id": "646271ae-036c-4250-9096-a25735d6c601",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Weapon 8",
+                    "type": "Button",
+                    "id": "68f8e183-26dd-4365-84f3-fd8ca9a3e39b",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "1a928006-fab5-4423-bd67-705cfccc009c",
+                    "path": "<HID::Thrustmaster T.Flight Hotas 4>/stick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "New control scheme",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "68007dab-4a51-427b-bcce-3fc3a59d291a",
+                    "path": "<HID::Thrustmaster T.Flight Hotas 4>/z",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "New control scheme",
+                    "action": "Thruster",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "1ecad213-7c60-4e53-948e-23d76b445e38",
+                    "path": "<HID::Thrustmaster T.Flight Hotas 4>/trigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "New control scheme",
+                    "action": "Fire",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "517d06fe-4db8-4c1b-bbeb-8c748075caa6",
+                    "path": "<HID::Thrustmaster T.Flight Hotas 4>/button12",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "New control scheme",
+                    "action": "Pause",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "8907dfc4-ab81-42b4-9437-e9824ed5b962",
+                    "path": "<HID::Thrustmaster T.Flight Hotas 4>/button11",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "New control scheme",
+                    "action": "Select",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "98c73c02-deba-4b06-a124-6a27e62b50b5",
+                    "path": "<HID::Thrustmaster T.Flight Hotas 4>/dial",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "New control scheme",
+                    "action": "Thruster Twist",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "bd9e70c6-5c8a-4dd9-ae90-06ee54e6bc51",
+                    "path": "<HID::Thrustmaster T.Flight Hotas 4>/rz",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Stick Twist",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2b3a32a0-e888-4653-9e96-7ddec96386e4",
+                    "path": "<HID::Thrustmaster T.Flight Hotas 4>/hat",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Look",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "67c0233c-dfc3-4929-a4aa-6a3a9eddb148",
+                    "path": "<HID::Thrustmaster T.Flight Hotas 4>/button2",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Missle",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "8d667c99-7e3c-4577-b0b5-11e28568e3fa",
+                    "path": "<HID::Thrustmaster T.Flight Hotas 4>/button4",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Weapon 1",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "48c78c90-7842-4c8d-be09-3c0afb248c99",
+                    "path": "<HID::Thrustmaster T.Flight Hotas 4>/button3",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Weapon 2",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b4dafe1f-3a36-480d-99ec-4d296be6456d",
+                    "path": "<HID::Thrustmaster T.Flight Hotas 4>/button5",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Weapon 3",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "31cfc0a0-7dab-4e7d-b500-542b1b58ee90",
+                    "path": "<HID::Thrustmaster T.Flight Hotas 4>/button6",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Weapon 4",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e2c235e2-a918-45b5-bf4b-5946517009b0",
+                    "path": "<HID::Thrustmaster T.Flight Hotas 4>/button7",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Weapon 5",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "107948d3-ba82-4406-909c-8a8c2325b625",
+                    "path": "<HID::Thrustmaster T.Flight Hotas 4>/button8",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Weapon 6",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "84633632-c9e7-420a-8102-797d596e0e6f",
+                    "path": "<HID::Thrustmaster T.Flight Hotas 4>/button9",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Weapon 7",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "46ccbbb6-4b11-4b57-96c6-de728ff7158a",
+                    "path": "<HID::Thrustmaster T.Flight Hotas 4>/button10",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Weapon 8",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": [
+        {
+            "name": "New control scheme",
+            "bindingGroup": "New control scheme",
+            "devices": [
+                {
+                    "devicePath": "<HID::Thrustmaster T.Flight Hotas 4>",
+                    "isOptional": false,
+                    "isOR": false
+                }
+            ]
+        }
+    ]
+}

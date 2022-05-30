@@ -35,57 +35,28 @@ public class TestInput : MonoBehaviour
 
         if (joystick == null)
             return; // No gamepad connected.
-
-        /*
-        if (joystick.trigger.IsPressed())
+                
+        // 00: Stick
+        var joystickControls_Stick = joystick.allControls[0];
+        if (joystickControls_Stick.IsPressed())
         {
-            // 'Use' code here
-            Debug.Log("Trigger Pressed");
+            Debug.Log("Joystick Stick (x,y): " + joystickControls_Stick.ReadValueAsObject());
         }
-        */
-
-        var joystickTwist = joystick.twist.ReadValue();
-        if (joystickTwist != 0)
-        {
-            Debug.Log("Joystick Twist: " + joystickTwist);
-        }
-
-        var joystickStick = joystick.stick.ReadValue();
-        Vector2 neutralPosition = new Vector2();
-        if (joystickStick != neutralPosition)
-        {
-            Debug.Log("Joystick Stick (x,y): " + joystickStick.ToString());
-        }
-
-        /*
-        if (joystick.hatswitch != null)
-        {
-            var joystickHatSwitch = joystick.hatswitch.ReadValue();
-            if (joystickHatSwitch != neutralPosition)
-            {
-                Debug.Log("Joystick Hat Switch (x,y): " + joystickStick.ToString());
-            }
-        }
-        */
-
-        /*
-        var joystickControls_X = joystick.allControls[1];
-        if (joystickControls_X.IsPressed())
-        {
-            Debug.Log("joystickControls_X Pressed");
-        }
-        */
 
         // 01: Trigger
         var joystickControls_Trigger = joystick.allControls[1];
         if (joystickControls_Trigger.IsPressed())
         {
-            Debug.Log("joystickControls_Trigger Pressed");
+            // Debug.Log("joystickControls_Trigger Pressed");
+            // Debug.Log("Thruster Trigger: " + joystickControls_Trigger);
+            Debug.Log("Thruster Trigger: " + joystickControls_Trigger.ReadValueAsObject().GetType().ToString());
+            // Debug.Log("Thruster Trigger: " + joystickControls_Trigger.ToString());
+            // Debug.Log("Thruster Trigger: " + joystickControls_Trigger.ReadValueAsObject().GetType().ToString());
             // this.transform.position.x;
             // this.gameObject.transform.position.Set();
             // Vector3.MoveTowards(transform.position, new  + 10);
             // this.gameObject.transform.position.Set()
-            
+
         }
 
         // 02: L1
@@ -102,7 +73,6 @@ public class TestInput : MonoBehaviour
         {
             Debug.Log("joystickControls_R3 Pressed");
         }
-
 
         // 04: L3
         var joystickControls_L3 = joystick.allControls[4];
@@ -168,53 +138,28 @@ public class TestInput : MonoBehaviour
             Debug.Log("joystickControls_Options Pressed");
         }
 
-
         // 13: Thruster Tilt
         var joystickControls_Thruster_Tilt = joystick.allControls[13];
         if (joystickControls_Thruster_Tilt.IsPressed())
         {   
-            Debug.Log("Thruster Tilt: " + joystickControls_Thruster_Tilt.ReadValueAsObject().ToString());
+            // Debug.Log("Thruster Tilt: " + joystickControls_Thruster_Tilt.ReadValueAsObject().ToString());
+            Debug.Log("Thruster Tilt: " + joystickControls_Thruster_Tilt.ToString());
         }
 
-        /*
-        // 14: 
-        var joystickControls_14 = joystick.allControls[14];
-        if (joystickControls_14.IsPressed())
+        // 17: Twist
+        var joystickControls_Twist = joystick.allControls[17];
+        if (joystickControls_Twist.IsPressed())
         {
-            // Debug.Log("joystickControls_14 Pressed");
-            Debug.Log("joystickControls_14: " + joystickControls_14.ReadValueAsObject().ToString());
+            // Debug.Log("Joystick Twist: " + joystickControls_Twist.ReadValueAsObject().ToString());
+            Debug.Log("Joystick Twist: " + joystickControls_Twist.ToString());
         }
-
-        // 15: 
-        var joystickControls_15 = joystick.allControls[15];
-        if (joystickControls_15.IsPressed())
-        {
-            // Debug.Log("joystickControls_15 Pressed");
-            Debug.Log("joystickControls_15: " + joystickControls_15.ReadValueAsObject().ToString());
-        }
-
-        // 16: 
-        var joystickControls_16 = joystick.allControls[16];
-        if (joystickControls_16.IsPressed())
-        {
-            // Debug.Log("joystickControls_16 Pressed");
-            Debug.Log("joystickControls_16: " + joystickControls_16.ReadValueAsObject().ToString());
-        }
-
-        // 17: 
-        var joystickControls_17 = joystick.allControls[17];
-        if (joystickControls_17.IsPressed())
-        {
-            // Debug.Log("joystickControls_17 Pressed");
-            Debug.Log("joystickControls_17: " + joystickControls_17.ReadValueAsObject().ToString());
-        }
-        */
-
+        
         // 18: Thruster
         var joystickControls_Thruster = joystick.allControls[18];
         if (joystickControls_Thruster.IsPressed())
-        {            
-            Debug.Log("Thruster: " + joystickControls_Thruster.ReadValueAsObject().ToString());
+        {
+            // Debug.Log("Thruster: " + joystickControls_Thruster.ReadValueAsObject().ToString());
+            Debug.Log("Thruster: " + joystickControls_Thruster.ToString());
         }
 
         // 19: Hat Switch 
@@ -223,6 +168,7 @@ public class TestInput : MonoBehaviour
         {
             // Debug.Log("joystickControls_19 Pressed");
             Debug.Log("joystickControls_Hat_Switch (x,y): " + joystickControls_Hat_Switch.ReadValueAsObject().ToString());
+            // Debug.Log("Thruster Hat: " + joystickControls_Hat_Switch.ReadValueAsObject().GetType().ToString());
         }
 
 
@@ -237,7 +183,7 @@ public class TestInput : MonoBehaviour
             }
         }
         */
-        
+
         /*
             [joystick.allControls[*] Mappings]:
             00: Joystick position
@@ -257,7 +203,7 @@ public class TestInput : MonoBehaviour
             14: 
             15: Thruster
             16: 
-            17: 
+            17: Twist
             18: 
             19:
             20: 
