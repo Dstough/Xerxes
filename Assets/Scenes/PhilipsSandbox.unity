@@ -138,6 +138,7 @@ GameObject:
   - component: {fileID: 611541919}
   - component: {fileID: 611541918}
   - component: {fileID: 611541920}
+  - component: {fileID: 611541921}
   m_Layer: 0
   m_Name: input_test_cube
   m_TagString: GameController
@@ -279,7 +280,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Actions: {fileID: -944628639613478452, guid: 68e6be67500a43c47acac317748f01c5, type: 3}
+  m_Actions: {fileID: -944628639613478452, guid: 645d3f910f7e91c48927df1095ae8a66, type: 3}
   m_NotificationBehavior: 0
   m_UIInputModule: {fileID: 0}
   m_DeviceLostEvent:
@@ -291,10 +292,65 @@ MonoBehaviour:
   m_ControlsChangedEvent:
     m_PersistentCalls:
       m_Calls: []
-  m_ActionEvents: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 79f7425b-a490-4757-8d71-57580a8e41e9
+    m_ActionName: Player/Move[/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow,/Thrustmaster
+      T.Flight Hotas 4/stick]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: d59181eb-b7e4-4921-a7fb-c74ff722b96f
+    m_ActionName: Player/Look[/Mouse/delta]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 3c420758-b5a4-40ad-a1f5-fcb1e450a8ce
+    m_ActionName: Player/Fire[/Mouse/leftButton,/Thrustmaster T.Flight Hotas 4/trigger]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 2a7748ec-0754-44ca-b4f5-7573e82ac6b7
+    m_ActionName: UI/Navigate[/Thrustmaster T.Flight Hotas 4/stick/up,/Thrustmaster
+      T.Flight Hotas 4/stick/down,/Thrustmaster T.Flight Hotas 4/stick/left,/Thrustmaster
+      T.Flight Hotas 4/stick/right,/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: d0a76f32-57e8-4cfc-87d0-d337afa8dbc7
+    m_ActionName: UI/Submit[/Keyboard/enter]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 96022176-70ca-4aa1-831e-c13a14fdf61f
+    m_ActionName: UI/Cancel[/Keyboard/escape]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 28f612cd-01ab-477c-9e31-4cc283042902
+    m_ActionName: UI/Point[/Mouse/position]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 0367abb5-913b-4447-8bcd-32a7f2b5d1eb
+    m_ActionName: UI/Click[/Mouse/leftButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: d31d87f5-ddd9-4a84-bf20-99bb6d1f37b2
+    m_ActionName: UI/ScrollWheel[/Mouse/scroll]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: c0202df3-85d3-4c52-972e-3e0135f33136
+    m_ActionName: UI/MiddleClick[/Mouse/middleButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 3f9e3734-51ed-45fd-b385-79d46f9a3b08
+    m_ActionName: UI/RightClick[/Mouse/rightButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 817ec5ba-53de-4a63-84e1-7b9e04b1df21
+    m_ActionName: UI/TrackedDevicePosition
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 4f194f54-1ae3-4fd0-8ca4-2a9e916578ef
+    m_ActionName: UI/TrackedDeviceOrientation
   m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: Joystick
-  m_DefaultActionMap: Player
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: Test  HOTAS Mapping
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 1271388252}
 --- !u!114 &611541920
@@ -309,6 +365,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 870ce864b157b26489bf5c287e3f5e80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentColor: 0
+  material: {fileID: 2100000, guid: 5586aad95a4fd7540a55c23804a76de9, type: 2}
+  material2: {fileID: 2100000, guid: 3de26a4e068a5074a9570cffd5b28bb6, type: 2}
+--- !u!114 &611541921
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 611541913}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa06a8ef0e112e7438107013c800241b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  material: {fileID: 2100000, guid: 21a3dc9e7e354764aaf8d84e3f2ed53e, type: 2}
+  material2: {fileID: 2100000, guid: 453ae2d7672dd374ea72e163809ebd07, type: 2}
+  material3: {fileID: 2100000, guid: 3de26a4e068a5074a9570cffd5b28bb6, type: 2}
 --- !u!1 &1271388250
 GameObject:
   m_ObjectHideFlags: 0
@@ -320,6 +394,9 @@ GameObject:
   - component: {fileID: 1271388253}
   - component: {fileID: 1271388252}
   - component: {fileID: 1271388251}
+  - component: {fileID: 1271388256}
+  - component: {fileID: 1271388255}
+  - component: {fileID: 1271388254}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -393,6 +470,160 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1271388254
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1271388250}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58b54aa54a72db04487d53a294b052b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotationSpeed: 0.5
+--- !u!23 &1271388255
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1271388250}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &1271388256
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1271388250}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: 645d3f910f7e91c48927df1095ae8a66, type: 3}
+  m_NotificationBehavior: 0
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: e21641dc-590c-4039-a677-40a2a6ba508e
+    m_ActionName: Test  HOTAS Mapping/Move[/Thrustmaster T.Flight Hotas 4/stick]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: cb5e1e52-cd4e-49f5-8f44-c52880e1596e
+    m_ActionName: Test  HOTAS Mapping/Thruster[/Thrustmaster T.Flight Hotas 4/z]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: b0f67a1a-2e4a-4099-8195-9c664291b1bb
+    m_ActionName: Test  HOTAS Mapping/Fire[/Thrustmaster T.Flight Hotas 4/trigger]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 28f90825-3514-4b76-8b5a-00f193a44e79
+    m_ActionName: Test  HOTAS Mapping/Pause[/Thrustmaster T.Flight Hotas 4/button12]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 0c7fdf2d-b6db-4985-ac2f-137d71625e72
+    m_ActionName: Test  HOTAS Mapping/Select[/Thrustmaster T.Flight Hotas 4/button11]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: a69a2998-bd69-4bd7-9d32-66c05533d45a
+    m_ActionName: Test  HOTAS Mapping/Thruster Twist[/Thrustmaster T.Flight Hotas
+      4/dial]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 1e502716-c522-43eb-a401-7d4fbbfe91ad
+    m_ActionName: Test  HOTAS Mapping/Stick Twist[/Thrustmaster T.Flight Hotas 4/rz]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 736c21d3-7191-4da5-992a-fc7475478690
+    m_ActionName: Test  HOTAS Mapping/Look[/Thrustmaster T.Flight Hotas 4/hat]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 5e2e4694-f79b-47ef-a871-f4e22be820b2
+    m_ActionName: Test  HOTAS Mapping/Missle[/Thrustmaster T.Flight Hotas 4/button2]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 009afdab-8cde-43d8-aa4c-9a7236c929ff
+    m_ActionName: Test  HOTAS Mapping/Weapon 1[/Thrustmaster T.Flight Hotas 4/button4]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 0c2e8f7b-e450-428e-81e9-4b73813a09fb
+    m_ActionName: Test  HOTAS Mapping/Weapon 2[/Thrustmaster T.Flight Hotas 4/button3]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 0d0be49d-af3d-45e6-907f-421ef43d0528
+    m_ActionName: Test  HOTAS Mapping/Weapon 3[/Thrustmaster T.Flight Hotas 4/button5]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: a1bfe5ca-9c2d-4af4-831c-d9d641b6e408
+    m_ActionName: Test  HOTAS Mapping/Weapon 4[/Thrustmaster T.Flight Hotas 4/button6]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: dc95cfa7-8fcb-4ec4-a84d-a91af4070ce0
+    m_ActionName: Test  HOTAS Mapping/Weapon 5[/Thrustmaster T.Flight Hotas 4/button7]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 931502eb-57f1-449d-8cb1-bf50f61ee17a
+    m_ActionName: Test  HOTAS Mapping/Weapon 6[/Thrustmaster T.Flight Hotas 4/button8]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 646271ae-036c-4250-9096-a25735d6c601
+    m_ActionName: Test  HOTAS Mapping/Weapon 7[/Thrustmaster T.Flight Hotas 4/button9]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 68f8e183-26dd-4365-84f3-fd8ca9a3e39b
+    m_ActionName: Test  HOTAS Mapping/Weapon 8[/Thrustmaster T.Flight Hotas 4/button10]
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: Test  HOTAS Mapping
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 1271388252}
 --- !u!1 &1892544298
 GameObject:
   m_ObjectHideFlags: 0
