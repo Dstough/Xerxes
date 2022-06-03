@@ -159,7 +159,8 @@ public class TestInput : MonoBehaviour
         if (joystickControls_Thruster.IsPressed())
         {
             // Debug.Log("Thruster: " + joystickControls_Thruster.ReadValueAsObject().ToString());
-            Debug.Log("Thruster: " + joystickControls_Thruster.ToString());
+            Debug.Log("Thruster: " + joystickControls_Thruster.ReadValueAsObject().GetType().ToString());
+            // Debug.Log("Thruster: " + joystickControls_Thruster.ToString());
         }
 
         // 19: Hat Switch 

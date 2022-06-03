@@ -16,12 +16,12 @@
                 },
                 {
                     "name": "Thruster",
-                    "type": "Button",
+                    "type": "Value",
                     "id": "cb5e1e52-cd4e-49f5-8f44-c52880e1596e",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "Integer",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": false
+                    "initialStateCheck": true
                 },
                 {
                     "name": "Fire",

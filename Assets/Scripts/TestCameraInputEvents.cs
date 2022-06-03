@@ -6,21 +6,26 @@ using UnityEngine.InputSystem;
 public class TestCameraInputEvents : MonoBehaviour
 {
     public float rotationSpeed;
-    private float neutralRotationSpeed = 0.0f;
+    public float movementSpeed;
+    private float neutralSpeed = 0.0f;
     private float negativeRotationSpeed;
-    private Vector3 nextTransformation;
-
+    private Vector3 nextRotationTransformation;
+    private float nextMovement = 0.0f;
+    
 
     // Start is called before the first frame update.
     void Start()
     {        
-        negativeRotationSpeed = (-1 * rotationSpeed);                 
+        negativeRotationSpeed = (-1 * rotationSpeed);
     }
 
     // Update is called once per frame.
     void Update()
     {        
-        this.transform.Rotate(nextTransformation);
+        this.transform.Rotate(nextRotationTransformation);
+        // this.transform.forward = nextMovementTransformation;   
+        // this.transform.forward = new Vector3(this.transform.position.x, this.transform.position.y, (this.transform.position.z + 0.5f));
+        this.transform.position += this.transform.forward * movementSpeed * nextMovement * Time.deltaTime;
     }
 
     public void OnLook(InputValue value)
@@ -33,47 +38,66 @@ public class TestCameraInputEvents : MonoBehaviour
             if (eventValue.x == 0 && eventValue.y > 0)
             {
                 // Up
-                this.nextTransformation = new Vector3(negativeRotationSpeed, neutralRotationSpeed);                
+                this.nextRotationTransformation = new Vector3(negativeRotationSpeed, neutralSpeed);                
             }
             else if (eventValue.x == 0 && eventValue.y < 0)
             {
                 // Down
-                this.nextTransformation = new Vector3(rotationSpeed, neutralRotationSpeed);
+                this.nextRotationTransformation = new Vector3(rotationSpeed, neutralSpeed);
             }
             else if (eventValue.x > 0 && eventValue.y == 0)
             {
                 // Right                
-                this.nextTransformation = new Vector3(neutralRotationSpeed, rotationSpeed);
+                this.nextRotationTransformation = new Vector3(neutralSpeed, rotationSpeed);
             }
             else if (eventValue.x < 0 && eventValue.y == 0)
             {
                 // Left
-                this.nextTransformation = new Vector3(neutralRotationSpeed, negativeRotationSpeed);
+                this.nextRotationTransformation = new Vector3(neutralSpeed, negativeRotationSpeed);
             }
             else if (eventValue.x > 0 && eventValue.y > 0)
             {
                 // Up Right                
-                this.nextTransformation = new Vector3(negativeRotationSpeed, rotationSpeed);
+                this.nextRotationTransformation = new Vector3(negativeRotationSpeed, rotationSpeed);
             }
             else if (eventValue.x > 0 && eventValue.y < 0)
             {
                 // Down Right                                
-                this.nextTransformation = new Vector3(rotationSpeed, rotationSpeed);
+                this.nextRotationTransformation = new Vector3(rotationSpeed, rotationSpeed);
             }
             else if (eventValue.x < 0 && eventValue.y > 0)
             {
                 // Up Left
-                this.nextTransformation = new Vector3(negativeRotationSpeed, negativeRotationSpeed);
+                this.nextRotationTransformation = new Vector3(negativeRotationSpeed, negativeRotationSpeed);
             }
             else if (eventValue.x < 0 && eventValue.y < 0)
             {
                 // Down Left
-                this.nextTransformation = new Vector3(rotationSpeed, negativeRotationSpeed);
+                this.nextRotationTransformation = new Vector3(rotationSpeed, negativeRotationSpeed);
             }            
         } catch
         {
             // Stop camera rotation.
-            this.nextTransformation = new Vector3(neutralRotationSpeed, neutralRotationSpeed);
+            this.nextRotationTransformation = new Vector3(neutralSpeed, neutralSpeed);
+        }
+    }
+
+    public void OnThruster(InputValue value)
+    {
+        try
+        {            
+            float eventValue = (-1 * (float)value.Get());
+            Debug.Log("Thruster movement: " + eventValue);
+
+            // Move camera based on thruster position.            
+            this.nextMovement = eventValue;
+        }
+        catch
+        {
+            Debug.Log("Thruster movement stopped");
+
+            // Stop camera movement.
+            this.nextMovement = neutralSpeed;
         }
     }   
 }
