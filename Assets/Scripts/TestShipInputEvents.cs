@@ -3,7 +3,7 @@ using UnityEngine.InputSystem;
 
 // [ExecuteInEditMode] // Be carefull with this one
 [RequireComponent(typeof(MeshRenderer))]
-public class TestCameraInputEvents : MonoBehaviour
+public class TestShipInputEvents : MonoBehaviour
 {
     public float rotationSpeed;
     public float movementSpeed;
@@ -21,17 +21,19 @@ public class TestCameraInputEvents : MonoBehaviour
 
     // Update is called once per frame.
     void Update()
-    {        
+    {
         transform.Rotate(nextRotationTransformation);
         // transform.forward = nextMovementTransformation;   
         // transform.forward = new Vector3(transform.position.x, transform.position.y, (transform.position.z + 0.5f));
-        // transform.position += transform.forward * movementSpeed * nextMovement * Time.deltaTime;
-    }
 
-    public void OnLook(InputValue value)
+        transform.position += transform.right * movementSpeed * nextMovement * Time.deltaTime;
+    }
+    
+    public void OnMove(InputValue value)
     {   
         try
         {
+            Debug.Log("In OnMove");
             Vector2 eventValue = (Vector2)value.Get();
 
             // Rotate camera based on hat direction pressed.
@@ -82,7 +84,6 @@ public class TestCameraInputEvents : MonoBehaviour
         }
     }
 
-    /*
     public void OnThruster(InputValue value)
     {
         try
@@ -101,5 +102,4 @@ public class TestCameraInputEvents : MonoBehaviour
             nextMovement = neutralSpeed;
         }
     }   
-    */
 }

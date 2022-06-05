@@ -19,13 +19,18 @@ public class ObjectTracker : MonoBehaviour
 
     // Start is called before the first frame update.
     void Start()
-    {        
-        
+    {
+        transform.position = GetNextPosition();
     }
 
     // Update is called once per frame.
     void Update()
+    {        
+        transform.position = GetNextPosition();
+    }
+
+    private Vector3 GetNextPosition()
     {
-        this.transform.position = new Vector3(trackingTarget.position.x + xOffset, trackingTarget.position.y + yOffset, transform.position.z + zOffset);
+        return new Vector3(trackingTarget.position.x + xOffset, trackingTarget.position.y + yOffset, trackingTarget.position.z + zOffset);
     }
 }
