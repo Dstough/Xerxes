@@ -4,14 +4,11 @@ using UnityEngine;
 
 public class Message : MonoBehaviour
 {
+    public delegate void ActionPerformed(int argument);
     private static Message instance;
-    private Dictionary<string, List<Action>> events;
+    private ActionPerformed actions;
 
     #region Monobehavior
-    void Start()
-    {
-        Init();
-    }
 
     void Awake()
     {
@@ -27,21 +24,16 @@ public class Message : MonoBehaviour
 
     #endregion
 
-    private void Init()
-    {
-        instance.events = new Dictionary<string, List<Action>>();
-    }
-
-    public bool RegisterEvent(string name, Action handler)
+    public bool RegisterEvent(ActionPerformed action)
     {
         var value = false;
 
         try
         {
-            if (!events.ContainsKey(name))
-                instance.events.Add(name, new List<Action>());
-
-            instance.events[name].Add(handler);
+            if (instance.actions is null)
+                actions = action;
+            else
+                actions += action;
 
             value = true;
         }
@@ -53,20 +45,21 @@ public class Message : MonoBehaviour
         return value;
     }
 
-    public bool TriggerEvent(string name)
+    public bool TriggerEvent(string name, int arg)
     {
         var value = false;
 
         try
         {
-            foreach(var function in instance.events[name])
-                function.Invoke();
+            instance.actions?.Invoke(arg);
+            value = true;
         }
-        catch (Exception ex)
+        catch(Exception ex)
         {
             Debug.LogError(ex.Message);
         }
 
         return value;
     }
+
 }

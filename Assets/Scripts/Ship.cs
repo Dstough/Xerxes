@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 public class Ship : MonoBehaviour
@@ -7,20 +6,22 @@ public class Ship : MonoBehaviour
     private int health;
     private Message message;
 
-    public int id;
-
-
     void Start()
     {
         name = "Leviathan";
         health = 100;
         message = GameObject.Find("GameMaster").GetComponent<Message>();
 
-        message.RegisterEvent(id + "TakeDamage", OnTakeDamage);
+        message.RegisterEvent(OnTakeDamage);
+    }
+    
+    void OnTakeDamage(int value)
+    {
+        health -= value;
     }
 
-    void OnTakeDamage()
+    void OnTakeDamage(float value)
     {
-        health-= 1;
+        ;
     }
 }
