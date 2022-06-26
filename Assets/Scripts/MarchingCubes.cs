@@ -14,7 +14,7 @@ namespace Assets.Scripts
             new Vector3Int(1, 0, 1),
             new Vector3Int(1, 1, 1),
             new Vector3Int(0, 1, 1)
-        };
+        }; 
 
         public static Vector3[,] EdgeTable = new Vector3[12, 2]
         {
