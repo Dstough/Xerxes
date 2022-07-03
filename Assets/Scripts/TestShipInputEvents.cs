@@ -12,23 +12,49 @@ public class TestShipInputEvents : MonoBehaviour
     private Vector3 nextRotationTransformation;
     private float nextMovement = 0.0f;
     private float movementThreshold = 0.01f;
+
+    private Quaternion originalRotation;
+    // private Vector3 originalRotation;
     
     // Start is called before the first frame update.
     void Start()
-    {        
+    {
+        originalRotation = transform.localRotation;
+        // originalRotation = new Vector3(transform.localRotation.x, transform.localRotation.y, transform.localRotation.z);
         negativeRotationSpeed = (-1 * rotationSpeed);
     }
 
     // Update is called once per frame.
     void Update()
     {
-        
+        // Debug.Log("movementThreshold: " + movementThreshold + " eventValue.x: " + eventValue.x + " eventValue.y: " + eventValue.y);
+        // Debug.Log("transform.rotation.x: " + transform.rotation.x + " | transform.rotation.y: " + transform.rotation.y + " | transform.rotation.z: " + transform.rotation.z);
 
-        transform.Rotate(nextRotationTransformation);
+        Debug.Log("originalRotation.x: " + originalRotation.x + " | originalRotation.y: " + originalRotation.y + " | transform.localRotation.z: " + originalRotation.z);
+
+        Debug.Log("transform.localRotation.x: " + transform.localRotation.x + " | transform.localRotation.y: " + transform.localRotation.y + " | transform.localRotation.z: " + transform.localRotation.z);
+
+        Debug.Log("nextRotationTransformation.x: " + nextRotationTransformation.x + " | nextRotationTransformation.y: " + nextRotationTransformation.y + " | nextRotationTransformation.z: " + nextRotationTransformation.z);
+
+        // transform.Rotate(nextRotationTransformation);
+
+        if (nextRotationTransformation.x == 0 && nextRotationTransformation.y == 0 && nextRotationTransformation.z == 0)
+        {
+            // transform.Rotate(originalRotation);
+            // transform.rotation = Quaternion.Slerp(transform.rotation, originalRotation, Time.time * 1.0f);
+            transform.rotation = Quaternion.Slerp(transform.rotation, originalRotation, Time.deltaTime);
+        } else
+        {
+            transform.Rotate(nextRotationTransformation);
+        }
+
+        // transform.RotateAround(nextRotationTransformation);
         // transform.forward = nextMovementTransformation;   
         // transform.forward = new Vector3(transform.position.x, transform.position.y, (transform.position.z + 0.5f));
 
         transform.position += transform.right * movementSpeed * nextMovement * Time.deltaTime;
+
+        // applyYRotationLimit();
     }
     
     public void OnMove(InputValue value)
@@ -152,49 +178,54 @@ public class TestShipInputEvents : MonoBehaviour
             {
                 // Up
                 Debug.Log("In Up");
-                nextRotationTransformation = new Vector3(negativeRotationSpeed, neutralSpeed);
+                // nextRotationTransformation = new Vector3(negativeRotationSpeed, neutralSpeed);
+                nextRotationTransformation = new Vector3(neutralSpeed, negativeRotationSpeed);
+                
             }
             else if (isNeutral(eventValue.x) && isNegative(eventValue.y))
             {
                 // Down
                 Debug.Log("In Down");
-                nextRotationTransformation = new Vector3(rotationSpeed, neutralSpeed);
+                // nextRotationTransformation = new Vector3(rotationSpeed, neutralSpeed);
+                nextRotationTransformation = new Vector3(neutralSpeed, rotationSpeed);
             }
             else if (isPositive(eventValue.x) && isNeutral(eventValue.y))
             {
                 // Right
                 Debug.Log("In Right");
-                nextRotationTransformation = new Vector3(neutralSpeed, rotationSpeed);
+                // nextRotationTransformation = new Vector3(neutralSpeed, rotationSpeed);
+                nextRotationTransformation = new Vector3(negativeRotationSpeed, neutralSpeed);
             }
             else if (isNegative(eventValue.x) && isNeutral(eventValue.y))
             {
                 // Left
                 Debug.Log("In Left");
-                nextRotationTransformation = new Vector3(neutralSpeed, negativeRotationSpeed);
+                // nextRotationTransformation = new Vector3(neutralSpeed, negativeRotationSpeed);
+                nextRotationTransformation = new Vector3(rotationSpeed, neutralSpeed);
             }
             else if (isPositive(eventValue.x) && isPositive(eventValue.y))
             {
                 // Up Right
                 Debug.Log("In Up Right");
-                nextRotationTransformation = new Vector3(negativeRotationSpeed, rotationSpeed);
+                // nextRotationTransformation = new Vector3(negativeRotationSpeed, rotationSpeed);
             }
             else if (isPositive(eventValue.x) && isNegative(eventValue.y))
             {
                 // Down Right
                 Debug.Log("In Down Right");
-                nextRotationTransformation = new Vector3(rotationSpeed, rotationSpeed);
+                // nextRotationTransformation = new Vector3(rotationSpeed, rotationSpeed);
             }
             else if (isNegative(eventValue.x) && isPositive(eventValue.y))
             {
                 // Up Left
                 Debug.Log("In Up Left");
-                nextRotationTransformation = new Vector3(negativeRotationSpeed, negativeRotationSpeed);
+                // nextRotationTransformation = new Vector3(negativeRotationSpeed, negativeRotationSpeed);
             }
             else if (isNegative(eventValue.x) && isNegative(eventValue.y))
             {
                 // Down Left
                 Debug.Log("In Down Left");
-                nextRotationTransformation = new Vector3(rotationSpeed, negativeRotationSpeed);
+                // nextRotationTransformation = new Vector3(rotationSpeed, negativeRotationSpeed);
             }
         }
         catch
@@ -236,5 +267,24 @@ public class TestShipInputEvents : MonoBehaviour
     public bool isNegative(float value)
     {
         return (value <= movementThreshold);
+    }
+
+    public void applyYRotationLimit()
+    {
+        /*
+        Vector3 currentPosition = transform.position;
+        Debug.Log("currentPosition.y: " + currentPosition.y + " | Mathf.Clamp(currentPosition.y, 0, 45): " + Mathf.Clamp(currentPosition.y, 0, 45));
+
+        currentPosition.y = Mathf.Clamp(currentPosition.y, 0, 45);
+
+        transform.position = currentPosition;
+        */
+
+        Quaternion currentRotation = transform.rotation;
+        Debug.Log("currentRotation.y: " + currentRotation.y + " | Mathf.Clamp(currentRotation.y, 0, 45): " + Mathf.Clamp(currentRotation.y, 0, 45));
+
+        currentRotation.y = Mathf.Clamp(currentRotation.y, 0, 0.5f);
+
+        transform.rotation = currentRotation;
     }
 }
