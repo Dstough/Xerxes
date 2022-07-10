@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using TMPro;
 
 // [ExecuteInEditMode] // Be carefull with this one
 [RequireComponent(typeof(MeshRenderer))]
@@ -12,6 +13,7 @@ public class TestShipInputEvents : MonoBehaviour
     private Vector3 nextRotationTransformation;
     private float nextMovement = 0.0f;
     private float movementThreshold = 0.01f;
+    public TextMeshProUGUI _textMesh;
 
     private Quaternion originalRotation;
     // private Vector3 originalRotation;
@@ -27,14 +29,18 @@ public class TestShipInputEvents : MonoBehaviour
     // Update is called once per frame.
     void Update()
     {
+        // _textMesh.text = "Hello World";
+
         // Debug.Log("movementThreshold: " + movementThreshold + " eventValue.x: " + eventValue.x + " eventValue.y: " + eventValue.y);
         // Debug.Log("transform.rotation.x: " + transform.rotation.x + " | transform.rotation.y: " + transform.rotation.y + " | transform.rotation.z: " + transform.rotation.z);
 
+        /*
         Debug.Log("originalRotation.x: " + originalRotation.x + " | originalRotation.y: " + originalRotation.y + " | transform.localRotation.z: " + originalRotation.z);
 
         Debug.Log("transform.localRotation.x: " + transform.localRotation.x + " | transform.localRotation.y: " + transform.localRotation.y + " | transform.localRotation.z: " + transform.localRotation.z);
 
         Debug.Log("nextRotationTransformation.x: " + nextRotationTransformation.x + " | nextRotationTransformation.y: " + nextRotationTransformation.y + " | nextRotationTransformation.z: " + nextRotationTransformation.z);
+        */
 
         // transform.Rotate(nextRotationTransformation);
 
@@ -46,6 +52,21 @@ public class TestShipInputEvents : MonoBehaviour
         } else
         {
             transform.Rotate(nextRotationTransformation);
+
+            /*
+            Vector3 cappedRotation = transform.rotation.eulerAngles + new Vector3(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z);
+            cappedRotation.y = ClampAngle(cappedRotation.y, -90f, 90f);
+            transform.eulerAngles = cappedRotation;
+            */
+            // transform.eulerAngles = Mathf.Clamp(transform.eulerAngles.y, -90, 90);
+
+            /*
+                Make a copy of the current transform object
+                Use copy's transfrom.rotate
+                Cap the copy's angles
+                Set the main object's euler angles to match the copy's
+            */
+
         }
 
         // transform.RotateAround(nextRotationTransformation);
@@ -54,9 +75,18 @@ public class TestShipInputEvents : MonoBehaviour
 
         transform.position += transform.right * movementSpeed * nextMovement * Time.deltaTime;
 
-        // applyYRotationLimit();
+        applyYRotationLimit();
     }
-    
+
+    private float ClampAngle(float angle, float from, float to)
+    {
+        // accepts e.g. -80, 80
+        if (angle < 0f) angle = 360 + angle;
+        if (angle > 180f) return Mathf.Max(angle, 360 + from);
+        return Mathf.Min(angle, to);
+    }
+
+
     public void OnMove(InputValue value)
     {
         try
@@ -179,15 +209,14 @@ public class TestShipInputEvents : MonoBehaviour
                 // Up
                 Debug.Log("In Up");
                 // nextRotationTransformation = new Vector3(negativeRotationSpeed, neutralSpeed);
-                nextRotationTransformation = new Vector3(neutralSpeed, negativeRotationSpeed);
-                
+                nextRotationTransformation = new Vector3(neutralSpeed, rotationSpeed);
             }
             else if (isNeutral(eventValue.x) && isNegative(eventValue.y))
             {
                 // Down
                 Debug.Log("In Down");
-                // nextRotationTransformation = new Vector3(rotationSpeed, neutralSpeed);
-                nextRotationTransformation = new Vector3(neutralSpeed, rotationSpeed);
+                // nextRotationTransformation = new Vector3(rotationSpeed, neutralSpeed);                
+                nextRotationTransformation = new Vector3(neutralSpeed, negativeRotationSpeed);
             }
             else if (isPositive(eventValue.x) && isNeutral(eventValue.y))
             {
@@ -232,6 +261,37 @@ public class TestShipInputEvents : MonoBehaviour
         {
             // Stop camera rotation.
             nextRotationTransformation = new Vector3(neutralSpeed, neutralSpeed);
+        }
+    }
+
+    public void OnStickTwist(InputValue value)
+    {
+        try
+        {
+            Debug.Log("In OnStickTwist");
+            float eventValue = (float)value.Get();
+            _textMesh.text = "OnStickTwist: eventValue: " + eventValue;
+            
+            // Rotate camera based on hat direction pressed.
+            if (isPositive(eventValue))
+            {
+                // Right
+                Debug.Log("In Up");
+                nextRotationTransformation = new Vector3(neutralSpeed, neutralSpeed, rotationSpeed);
+            }
+            else if (isNegative(eventValue))
+            {
+                // Left
+                Debug.Log("In Down");
+                nextRotationTransformation = new Vector3(neutralSpeed, neutralSpeed, negativeRotationSpeed);
+            }
+            
+        }
+        catch
+        {
+            nextRotationTransformation = new Vector3(neutralSpeed, neutralSpeed);
+            Debug.Log("OnStickTwist: error");
+            _textMesh.text = "OnStickTwist: eventValue: " + 0;
         }
     }
 
@@ -280,11 +340,13 @@ public class TestShipInputEvents : MonoBehaviour
         transform.position = currentPosition;
         */
 
-        Quaternion currentRotation = transform.rotation;
-        Debug.Log("currentRotation.y: " + currentRotation.y + " | Mathf.Clamp(currentRotation.y, 0, 45): " + Mathf.Clamp(currentRotation.y, 0, 45));
+        // Quaternion currentRotation = transform.rotation;        
+        // Debug.Log("currentRotation.y: " + currentRotation.y + " | Mathf.Clamp(currentRotation.y, 0, 45): " + Mathf.Clamp(currentRotation.y, 0, 45));
 
-        currentRotation.y = Mathf.Clamp(currentRotation.y, 0, 0.5f);
+        // _textMesh.text = "currentRotation.y: " + currentRotation.y + " | Mathf.Clamp(currentRotation.y, 0, 45): " + Mathf.Clamp(currentRotation.y, 0, 45);
 
-        transform.rotation = currentRotation;
+        // currentRotation.y = Mathf.Clamp(currentRotation.y, 0, 0.5f);
+
+        // transform.rotation = currentRotation;
     }
 }

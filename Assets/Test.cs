@@ -586,7 +586,7 @@ public partial class @Test : IInputActionCollection2, IDisposable
                 @ThrusterTwist.canceled += instance.OnThrusterTwist;
                 @StickTwist.started += instance.OnStickTwist;
                 @StickTwist.performed += instance.OnStickTwist;
-                @StickTwist.canceled += instance.OnStickTwist;
+                @StickTwist.canceled += instance.OnStickTwist;                
                 @Look.started += instance.OnLook;
                 @Look.performed += instance.OnLook;
                 @Look.canceled += instance.OnLook;

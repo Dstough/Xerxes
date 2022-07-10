@@ -54,19 +54,19 @@
                     "name": "Thruster Twist",
                     "type": "Value",
                     "id": "a69a2998-bd69-4bd7-9d32-66c05533d45a",
-                    "expectedControlType": "",
+                    "expectedControlType": "Analog",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
                 },
                 {
                     "name": "Stick Twist",
-                    "type": "Button",
+                    "type": "Value",
                     "id": "1e502716-c522-43eb-a401-7d4fbbfe91ad",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "Axis",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": false
+                    "initialStateCheck": true
                 },
                 {
                     "name": "Look",
