@@ -12,6 +12,7 @@ public class TestShipInputEvents : MonoBehaviour
     private float negativeRotationSpeed;
     private Vector3 nextRotationTransformation;
     private float nextMovement = 0.0f;
+    private float nextVerticalMovement = 0.0f;
     private float movementThreshold = 0.01f;
     public TextMeshProUGUI _textMesh;
 
@@ -73,7 +74,11 @@ public class TestShipInputEvents : MonoBehaviour
         // transform.forward = nextMovementTransformation;   
         // transform.forward = new Vector3(transform.position.x, transform.position.y, (transform.position.z + 0.5f));
 
+        // Horizontal movement.
         transform.position += transform.right * movementSpeed * nextMovement * Time.deltaTime;
+
+        // Vertical movement.
+        transform.position += transform.forward * movementSpeed * nextVerticalMovement * Time.deltaTime;
 
         applyYRotationLimit();
     }
@@ -311,6 +316,25 @@ public class TestShipInputEvents : MonoBehaviour
 
             // Stop camera movement.
             nextMovement = neutralSpeed;
+        }
+    }
+        
+    public void OnThrusterTwist(InputValue value)
+    {
+        try
+        {
+            float eventValue = (-1 * (float)value.Get());
+            Debug.Log("In OnThrusterTwist: " + eventValue);
+
+            // Move camera based on thruster position.            
+            nextVerticalMovement = eventValue;
+        }
+        catch
+        {
+            Debug.Log("In OnThrusterTwist stopped");
+
+            // Stop camera movement.
+            nextVerticalMovement = neutralSpeed;
         }
     }
 

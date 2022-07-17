@@ -54,7 +54,7 @@
                     "name": "Thruster Twist",
                     "type": "Value",
                     "id": "a69a2998-bd69-4bd7-9d32-66c05533d45a",
-                    "expectedControlType": "Analog",
+                    "expectedControlType": "Axis",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
