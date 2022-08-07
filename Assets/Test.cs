@@ -38,21 +38,21 @@ public partial class @Test : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": ""Thruster"",
-                    ""type"": ""Button"",
+                    ""type"": ""Value"",
                     ""id"": ""cb5e1e52-cd4e-49f5-8f44-c52880e1596e"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
-                    ""initialStateCheck"": false
+                    ""initialStateCheck"": true
                 },
                 {
                     ""name"": ""Fire"",
-                    ""type"": ""Button"",
+                    ""type"": ""Value"",
                     ""id"": ""b0f67a1a-2e4a-4099-8195-9c664291b1bb"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
-                    ""initialStateCheck"": false
+                    ""initialStateCheck"": true
                 },
                 {
                     ""name"": ""Pause"",
@@ -83,12 +83,12 @@ public partial class @Test : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": ""Stick Twist"",
-                    ""type"": ""Button"",
+                    ""type"": ""Value"",
                     ""id"": ""1e502716-c522-43eb-a401-7d4fbbfe91ad"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
-                    ""initialStateCheck"": false
+                    ""initialStateCheck"": true
                 },
                 {
                     ""name"": ""Look"",
@@ -101,12 +101,12 @@ public partial class @Test : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": ""Missle"",
-                    ""type"": ""Button"",
+                    ""type"": ""Value"",
                     ""id"": ""5e2e4694-f79b-47ef-a871-f4e22be820b2"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
-                    ""initialStateCheck"": false
+                    ""initialStateCheck"": true
                 },
                 {
                     ""name"": ""Weapon 1"",
@@ -164,21 +164,21 @@ public partial class @Test : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": ""Weapon 7"",
-                    ""type"": ""Button"",
+                    ""type"": ""Value"",
                     ""id"": ""646271ae-036c-4250-9096-a25735d6c601"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
-                    ""initialStateCheck"": false
+                    ""initialStateCheck"": true
                 },
                 {
                     ""name"": ""Weapon 8"",
-                    ""type"": ""Button"",
+                    ""type"": ""Value"",
                     ""id"": ""68f8e183-26dd-4365-84f3-fd8ca9a3e39b"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
-                    ""initialStateCheck"": false
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -586,7 +586,7 @@ public partial class @Test : IInputActionCollection2, IDisposable
                 @ThrusterTwist.canceled += instance.OnThrusterTwist;
                 @StickTwist.started += instance.OnStickTwist;
                 @StickTwist.performed += instance.OnStickTwist;
-                @StickTwist.canceled += instance.OnStickTwist;                
+                @StickTwist.canceled += instance.OnStickTwist;
                 @Look.started += instance.OnLook;
                 @Look.performed += instance.OnLook;
                 @Look.canceled += instance.OnLook;

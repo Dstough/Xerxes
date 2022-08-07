@@ -160,7 +160,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Actions: {fileID: -944628639613478452, guid: 645d3f910f7e91c48927df1095ae8a66, type: 3}
+  m_Actions: {fileID: -944628639613478452, guid: ea9f2cd9ebeb1964f8e25b00f7eb72f0, type: 3}
   m_NotificationBehavior: 0
   m_UIInputModule: {fileID: 0}
   m_DeviceLostEvent:
@@ -172,7 +172,76 @@ MonoBehaviour:
   m_ControlsChangedEvent:
     m_PersistentCalls:
       m_Calls: []
-  m_ActionEvents: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: e21641dc-590c-4039-a677-40a2a6ba508e
+    m_ActionName: Test  HOTAS Mapping/Move[/Thrustmaster T.Flight Hotas 4/stick]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: cb5e1e52-cd4e-49f5-8f44-c52880e1596e
+    m_ActionName: Test  HOTAS Mapping/Thruster[/Thrustmaster T.Flight Hotas 4/z]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: b0f67a1a-2e4a-4099-8195-9c664291b1bb
+    m_ActionName: Test  HOTAS Mapping/Fire[/Thrustmaster T.Flight Hotas 4/trigger]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 28f90825-3514-4b76-8b5a-00f193a44e79
+    m_ActionName: Test  HOTAS Mapping/Pause[/Thrustmaster T.Flight Hotas 4/button12]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 0c7fdf2d-b6db-4985-ac2f-137d71625e72
+    m_ActionName: Test  HOTAS Mapping/Select[/Thrustmaster T.Flight Hotas 4/button11]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: a69a2998-bd69-4bd7-9d32-66c05533d45a
+    m_ActionName: Test  HOTAS Mapping/Thruster Twist[/Thrustmaster T.Flight Hotas
+      4/dial]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 1e502716-c522-43eb-a401-7d4fbbfe91ad
+    m_ActionName: Test  HOTAS Mapping/Stick Twist[/Thrustmaster T.Flight Hotas 4/rz]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 736c21d3-7191-4da5-992a-fc7475478690
+    m_ActionName: Test  HOTAS Mapping/Look[/Thrustmaster T.Flight Hotas 4/hat]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 5e2e4694-f79b-47ef-a871-f4e22be820b2
+    m_ActionName: Test  HOTAS Mapping/Missle[/Thrustmaster T.Flight Hotas 4/button2]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 009afdab-8cde-43d8-aa4c-9a7236c929ff
+    m_ActionName: Test  HOTAS Mapping/Weapon 1[/Thrustmaster T.Flight Hotas 4/button4]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 0c2e8f7b-e450-428e-81e9-4b73813a09fb
+    m_ActionName: Test  HOTAS Mapping/Weapon 2[/Thrustmaster T.Flight Hotas 4/button3]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 0d0be49d-af3d-45e6-907f-421ef43d0528
+    m_ActionName: Test  HOTAS Mapping/Weapon 3[/Thrustmaster T.Flight Hotas 4/button5]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: a1bfe5ca-9c2d-4af4-831c-d9d641b6e408
+    m_ActionName: Test  HOTAS Mapping/Weapon 4[/Thrustmaster T.Flight Hotas 4/button6]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: dc95cfa7-8fcb-4ec4-a84d-a91af4070ce0
+    m_ActionName: Test  HOTAS Mapping/Weapon 5[/Thrustmaster T.Flight Hotas 4/button7]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 931502eb-57f1-449d-8cb1-bf50f61ee17a
+    m_ActionName: Test  HOTAS Mapping/Weapon 6[/Thrustmaster T.Flight Hotas 4/button8]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 646271ae-036c-4250-9096-a25735d6c601
+    m_ActionName: Test  HOTAS Mapping/Weapon 7[/Thrustmaster T.Flight Hotas 4/button9]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 68f8e183-26dd-4365-84f3-fd8ca9a3e39b
+    m_ActionName: Test  HOTAS Mapping/Weapon 8[/Thrustmaster T.Flight Hotas 4/button10]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Test  HOTAS Mapping

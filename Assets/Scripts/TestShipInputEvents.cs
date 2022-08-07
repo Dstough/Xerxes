@@ -13,6 +13,7 @@ public class TestShipInputEvents : MonoBehaviour
     private Vector3 nextRotationTransformation;
     private float nextMovement = 0.0f;
     private float nextVerticalMovement = 0.0f;
+    private float nextHorizontalMovement = 0.0f;
     private float movementThreshold = 0.01f;
     public TextMeshProUGUI _textMesh;
 
@@ -74,13 +75,19 @@ public class TestShipInputEvents : MonoBehaviour
         // transform.forward = nextMovementTransformation;   
         // transform.forward = new Vector3(transform.position.x, transform.position.y, (transform.position.z + 0.5f));
 
-        // Horizontal movement.
+        // Forward / Backward movement.
         transform.position += transform.right * movementSpeed * nextMovement * Time.deltaTime;
+        // nextMovement = 0.0f;
+
+        // Horizontal movement.
+        transform.position += transform.up * movementSpeed * nextHorizontalMovement * Time.deltaTime;
+        // nextHorizontalMovement = 0.0f;
 
         // Vertical movement.
         transform.position += transform.forward * movementSpeed * nextVerticalMovement * Time.deltaTime;
+        // nextVerticalMovement = 0.0f;
 
-        applyYRotationLimit();
+        //applyYRotationLimit();
     }
 
     private float ClampAngle(float angle, float from, float to)
@@ -318,9 +325,10 @@ public class TestShipInputEvents : MonoBehaviour
             nextMovement = neutralSpeed;
         }
     }
-        
+
     public void OnThrusterTwist(InputValue value)
     {
+        /*
         try
         {
             float eventValue = (-1 * (float)value.Get());
@@ -336,6 +344,97 @@ public class TestShipInputEvents : MonoBehaviour
             // Stop camera movement.
             nextVerticalMovement = neutralSpeed;
         }
+        */
+
+        try
+        {
+            float eventValue = (float)value.Get();
+            Debug.Log("In OnThrusterTwist: " + eventValue);
+
+            // Move camera based on thruster position.            
+            nextHorizontalMovement = eventValue;
+        }
+        catch
+        {
+            Debug.Log("In OnThrusterTwist stopped");
+
+            // Stop camera movement.
+            nextHorizontalMovement = neutralSpeed;
+        }
+    }
+
+    public void OnWeapon7(InputValue value)
+    {
+        try
+        {
+            float eventValue = (float)value.Get();
+            Debug.Log("In OnWeapon7: " + eventValue);
+
+            // Move camera based on thruster position.            
+            nextVerticalMovement = eventValue;
+        }
+        catch
+        {
+            Debug.Log("In OnWeapon7 stopped");
+
+            // Stop camera movement.
+            nextVerticalMovement = neutralSpeed;
+        }
+
+        /*
+        try
+        {
+            float eventValue = (-1 * (float)value.Get());
+            Debug.Log("In OnThrusterTwist: " + eventValue);
+
+            // Move camera based on thruster position.            
+            nextVerticalMovement = eventValue;
+        }
+        catch
+        {
+            Debug.Log("In OnThrusterTwist stopped");
+
+            // Stop camera movement.
+            nextVerticalMovement = neutralSpeed;
+        }
+        */
+    }
+
+    public void OnWeapon8(InputValue value)
+    {
+        try
+        {
+            float eventValue = (-1 * (float)value.Get());
+            Debug.Log("In OnWeapon8: " + eventValue);
+
+            // Move camera based on thruster position.            
+            nextVerticalMovement = eventValue;
+        }
+        catch
+        {
+            Debug.Log("In OnWeapon8 stopped");
+
+            // Stop camera movement.
+            nextVerticalMovement = neutralSpeed;
+        }
+
+        /*
+        try
+        {
+            float eventValue = (-1 * (float)value.Get());
+            Debug.Log("In OnWeapon8: " + eventValue);
+
+            // Move camera based on thruster position.            
+            nextHorizontalMovement = eventValue;
+        }
+        catch
+        {
+            Debug.Log("In OnWeapon8 stopped");
+
+            // Stop camera movement.
+            nextVerticalMovement = neutralSpeed;
+        }
+        */
     }
 
     public bool isNeutral(float value)
