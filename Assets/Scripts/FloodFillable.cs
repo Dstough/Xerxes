@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEditor.FilePathAttribute;
 
 [ExecuteInEditMode]
 [RequireComponent(typeof(ChunkResizeable))]
@@ -10,7 +11,7 @@ public class FloodFillable : MonoBehaviour
     [Range(0, 10000)]
     public int seed = 0;
 
-    [Range(0, 100)]
+    [Range(0, 1000)]
     public int ammount = 0;
 
     [Range(0f, 1f)]
@@ -22,7 +23,6 @@ public class FloodFillable : MonoBehaviour
 
     float oldRotationLikelyhood = 0f;
     bool dirty = true;
-    List<GameObject> objectsGenerated = new();
     ChunkResizeable chunkResizeable;
 
     private void Start()
@@ -37,18 +37,23 @@ public class FloodFillable : MonoBehaviour
             oldAmmount != ammount ||
             oldRotationLikelyhood != rotationLikelyhood;
 
-        if (!dirty)
+        if (!dirty || objectsToFloodFill.Count == 0)
             return;
 
-        if (objectsToFloodFill.Count == 0)
-            return;
+        Reinitialize();
 
+        oldSeed = seed;
+        oldAmmount = ammount;
+        oldRotationLikelyhood = rotationLikelyhood;
+        dirty = false;
+    }
+
+    private void Reinitialize()
+    {
+        for (int i = transform.childCount - 1; i >= 0; i--)
+            DestroyImmediate(transform.GetChild(i).gameObject);
+        
         Random.InitState(seed);
-
-        foreach (var gameObject in objectsGenerated)
-            DestroyImmediate(gameObject);
-
-        objectsGenerated.Clear();
 
         for (var count = 0; count < ammount; count++)
         {
@@ -57,18 +62,32 @@ public class FloodFillable : MonoBehaviour
             if (objectsToFloodFill[index] == null)
                 continue;
 
-            objectsToFloodFill[index].TryGetComponent<MeshCollider>(out var meshColider);
-            
             var placementErrorCount = 0;
             var placementFound = false;
+            var newGameObject = Instantiate(objectsToFloodFill[index], Vector3.zero, Quaternion.identity, transform);
+            var size = Random.Range(1, chunkResizeable.GetMinimumDimention() / 10f);
 
-            //TODO: Fix this by generating the object first then moving it into place.
-            //      The size also needs to be evaluated again. For some reason the mesh
-            //      collider always returns 0 for the size, I don't know why.
-            //      > Stoats.
+            newGameObject.transform.localScale = new Vector3(size, size, size);
+            newGameObject.transform.rotation = Quaternion.Euler(Random.Range(0f, 90f), Random.Range(0f, 90f), Random.Range(0f, 90f));
+            newGameObject.TryGetComponent<MeshSwappable>(out var meshSwappable);
+            newGameObject.TryGetComponent<MeshCollider>(out var meshCollider);
+            newGameObject.TryGetComponent<Rotatable>(out var rotatable);
+
+            if (meshSwappable != null)
+                meshSwappable.index = Random.Range(0, Mathf.Max(0, meshSwappable.meshes.Count));
+
+            if (rotatable != null && Random.Range(0f, 1f) < rotationLikelyhood)
+            {
+                rotatable.xSpeed = Random.Range(0f, 2f);
+                rotatable.ySpeed = Random.Range(0f, 2f);
+                rotatable.zSpeed = Random.Range(0f, 2f);
+                rotatable.gloabalSpeed = Random.Range(1f, 5f);
+            }
+
+            Physics.SyncTransforms();
+
             do
             {
-                var size = meshColider != null ? meshColider.bounds.size : Vector3.zero;
                 var location = new Vector3
                 {
                     x = Random.Range(transform.position.x, transform.position.x + chunkResizeable.width),
@@ -76,31 +95,18 @@ public class FloodFillable : MonoBehaviour
                     z = Random.Range(transform.position.z, transform.position.z + chunkResizeable.depth)
                 };
 
-                if (Physics.CheckBox(location, size / 2, transform.rotation) == true)
-                    placementErrorCount++;
-                else
+                if (meshCollider == null || Physics.CheckBox(location, meshCollider.bounds.size) == false)
                 {
-                    var newGameObject = Instantiate(objectsToFloodFill[index], location, Quaternion.identity, transform);
-                    
-                    newGameObject.transform.localScale = size;
-
-                    if (Random.Range(0f, 1f) < rotationLikelyhood)
-                    {
-                        newGameObject.TryGetComponent<Rotatable>(out var rotatable);
-                        //TODO: Randomize the rotation speeds of the object via the rotateable 
-                    }
-
-                    objectsGenerated.Add(newGameObject);
+                    newGameObject.transform.position = location;
                     placementFound = true;
-                };
-
+                }
+                else
+                    placementErrorCount++;
+                
             } while (!placementFound && placementErrorCount < 5);
+
+            if (!placementFound)
+                DestroyImmediate(newGameObject);
         }
-
-        oldSeed = seed;
-        oldAmmount = ammount;
-        oldRotationLikelyhood = rotationLikelyhood;
-
-        dirty = false;
     }
 }

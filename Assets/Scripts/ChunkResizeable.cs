@@ -3,7 +3,7 @@ using UnityEngine;
 [ExecuteInEditMode]
 public class ChunkResizeable : MonoBehaviour
 {
-    [Range(0f, 100f)]
+    [Range(0f, 1000f)]
     public float
         height = 10f,
         width = 10f,

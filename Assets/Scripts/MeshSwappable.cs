@@ -34,4 +34,10 @@ public class MeshSwappable : MonoBehaviour
 
         previousIndex = index;
     }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireCube(transform.position, gameObject.GetComponent<MeshCollider>().bounds.size);
+    }
 }

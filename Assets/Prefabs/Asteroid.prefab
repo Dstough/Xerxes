@@ -99,9 +99,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   xSpeed: 0
-  ySpeed: 0.424
-  zSpeed: 0.215
-  gloabalSpeed: 26.8
+  ySpeed: 0
+  zSpeed: 0
+  gloabalSpeed: 0
 --- !u!64 &7738468043428752732
 MeshCollider:
   m_ObjectHideFlags: 0
