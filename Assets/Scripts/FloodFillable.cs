@@ -78,9 +78,9 @@ public class FloodFillable : MonoBehaviour
 
             if (rotatable != null && Random.Range(0f, 1f) < rotationLikelyhood)
             {
-                rotatable.xSpeed = Random.Range(0f, 2f);
-                rotatable.ySpeed = Random.Range(0f, 2f);
-                rotatable.zSpeed = Random.Range(0f, 2f);
+                rotatable.xSpeed = Random.Range(-2f, 2f);
+                rotatable.ySpeed = Random.Range(-2f, 2f);
+                rotatable.zSpeed = Random.Range(-2f, 2f);
                 rotatable.gloabalSpeed = Random.Range(1f, 5f);
             }
 
