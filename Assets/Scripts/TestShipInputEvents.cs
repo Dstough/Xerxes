@@ -50,7 +50,9 @@ public class TestShipInputEvents : MonoBehaviour
         {
             // transform.Rotate(originalRotation);
             // transform.rotation = Quaternion.Slerp(transform.rotation, originalRotation, Time.time * 1.0f);
-            transform.rotation = Quaternion.Slerp(transform.rotation, originalRotation, Time.deltaTime);
+            
+            // Reset rotation.
+            // transform.rotation = Quaternion.Slerp(transform.rotation, originalRotation, Time.deltaTime);
         } else
         {
             transform.Rotate(nextRotationTransformation);
@@ -88,6 +90,10 @@ public class TestShipInputEvents : MonoBehaviour
         // nextVerticalMovement = 0.0f;
 
         //applyYRotationLimit();
+
+
+        // Debug.Log("Rotation: " + transform.rotation);
+        _textMesh.text = "Rotation: " + transform.rotation;
     }
 
     private float ClampAngle(float angle, float from, float to)
