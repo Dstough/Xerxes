@@ -5,6 +5,9 @@ using UnityEngine;
 [System.Serializable]
 public class NoiseSettings
 {
+    public enum FilterType { simple, rigid}
+    public FilterType type;
+
     public float strength =1;
     [Range(1,8)]
     public int numberOfLayers = 1;
@@ -13,4 +16,6 @@ public class NoiseSettings
     public float persitance = .5f;
     public Vector3 center;
     public float minValue;
+
+    public float weightMultiplier = 8f;
 }

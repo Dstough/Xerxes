@@ -8,6 +8,9 @@ public class Planet : MonoBehaviour
     [Range(2, 256)]
     public int resolution = 10;
     public bool autoUpdate = true;
+    public enum FaceRenderMask { all, top, bottom, left, right, front, back }
+    public FaceRenderMask faceRenderMask;
+
     public ShapeSettings shapeSettings;
     public ColorSettings colorSettings;
 
@@ -43,15 +46,16 @@ public class Planet : MonoBehaviour
                 meshFilters[index].sharedMesh = new Mesh();
             }
             terrainFaces[index] = new TerrainFace(shapeGenerator, meshFilters[index].sharedMesh, resolution, directions[index]);
+            var renderFace = faceRenderMask == FaceRenderMask.all || (int)faceRenderMask - 1 == index;
+            meshFilters[index].gameObject.SetActive(renderFace);
         }
     }
 
     void GenerateMesh()
     {
-        foreach (var face in terrainFaces)
-        {
-            face.ConstructMesh();
-        }
+        for (var index = 0; index < 6; index++)
+            if (meshFilters[index].gameObject.activeSelf)
+                terrainFaces[index].ConstructMesh();
     }
 
     void GenerateColors()

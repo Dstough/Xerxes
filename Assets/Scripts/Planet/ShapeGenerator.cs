@@ -5,14 +5,14 @@ using UnityEngine;
 public class ShapeGenerator
 {
     ShapeSettings shapeSettings;
-    NoiseFilter[] noiseFilters;
+    INoiseFilter[] noiseFilters;
     public ShapeGenerator(ShapeSettings settings)
     {
         shapeSettings = settings;
-        noiseFilters = new NoiseFilter[settings.noiseLayers.Length];
+        noiseFilters = new INoiseFilter[settings.noiseLayers.Length];
 
         for (var index = 0; index < settings.noiseLayers.Length; index++)
-            noiseFilters[index] = new NoiseFilter(settings.noiseLayers[index].noiseSettings);
+            noiseFilters[index] = NoiseFilterFactory.CreateNoiseFilter(settings.noiseLayers[index].noiseSettings);
     }
 
     public Vector3 CalculatePointOnPlanet(Vector3 pointOnUnitSphere)
