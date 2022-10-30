@@ -10,8 +10,6 @@ public class TestCameraInputEvents : MonoBehaviour
     private float neutralSpeed = 0.0f;
     private float negativeRotationSpeed;
     private Vector3 nextRotationTransformation;
-    private float nextMovement = 0.0f;
-    
 
     // Start is called before the first frame update.
     void Start()
@@ -23,9 +21,6 @@ public class TestCameraInputEvents : MonoBehaviour
     void Update()
     {        
         transform.Rotate(nextRotationTransformation);
-        // transform.forward = nextMovementTransformation;   
-        // transform.forward = new Vector3(transform.position.x, transform.position.y, (transform.position.z + 0.5f));
-        // transform.position += transform.forward * movementSpeed * nextMovement * Time.deltaTime;
     }
 
     public void OnLook(InputValue value)
@@ -77,29 +72,8 @@ public class TestCameraInputEvents : MonoBehaviour
             }            
         } catch
         {
-            // Stop camera rotation.
+            // Stop rotation.
             nextRotationTransformation = new Vector3(neutralSpeed, neutralSpeed);
         }
     }
-
-    /*
-    public void OnThruster(InputValue value)
-    {
-        try
-        {            
-            float eventValue = (-1 * (float)value.Get());
-            Debug.Log("Thruster movement: " + eventValue);
-
-            // Move camera based on thruster position.            
-            nextMovement = eventValue;
-        }
-        catch
-        {
-            Debug.Log("Thruster movement stopped");
-
-            // Stop camera movement.
-            nextMovement = neutralSpeed;
-        }
-    }   
-    */
 }
