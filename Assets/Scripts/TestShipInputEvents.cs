@@ -2,7 +2,6 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using TMPro;
 using Assets.Scripts;
-using System.Collections.Generic;
 
 // [ExecuteInEditMode] // Be carefull with this one
 [RequireComponent(typeof(MeshRenderer))]
@@ -32,7 +31,11 @@ public class TestShipInputEvents : MonoBehaviour
     // Update is called once per frame.
     void Update()
     {
-        if (nextRotationTransformation.x != 0 && nextRotationTransformation.y != 0 && nextRotationTransformation.z != 0)
+        if (nextRotationTransformation.x == 0 && nextRotationTransformation.y == 0 && nextRotationTransformation.z == 0)
+        {
+            // Do nothing.
+        } 
+        else
         {
             transform.Rotate(nextRotationTransformation);
         }
@@ -51,75 +54,8 @@ public class TestShipInputEvents : MonoBehaviour
         
     public void OnMove(InputValue value)
     {
-        try
-        {
-            Debug.Log("In OnMove");
-            Vector2 eventValue = (Vector2)value.Get();
-
-            Debug.Log("movementThreshold: " + movementThreshold + " eventValue.x: " + eventValue.x + " eventValue.y: " + eventValue.y);
-
-            // Rotate based on direction pressed.
-            if (JoystickInputCalibration.isNeutral(eventValue.x, movementThreshold) && JoystickInputCalibration.isPositive(eventValue.y, movementThreshold))
-            {
-                // Up
-                Debug.Log("In Up");                
-                nextRotationTransformation = new Vector3(neutralSpeed, rotationSpeed);
-            }
-            
-            if (JoystickInputCalibration.isNeutral(eventValue.x, movementThreshold) && JoystickInputCalibration.isNegative(eventValue.y, movementThreshold))
-            {
-                // Down
-                Debug.Log("In Down");
-                nextRotationTransformation = new Vector3(neutralSpeed, negativeRotationSpeed);
-            }
-            
-            if (JoystickInputCalibration.isPositive(eventValue.x, movementThreshold) && JoystickInputCalibration.isNeutral(eventValue.y, movementThreshold))
-            {
-                // Right
-                Debug.Log("In Right");                
-                nextRotationTransformation = new Vector3(negativeRotationSpeed, neutralSpeed);
-            }
-            
-            if (JoystickInputCalibration.isNegative(eventValue.x, movementThreshold) && JoystickInputCalibration.isNeutral(eventValue.y, movementThreshold))
-            {
-                // Left
-                Debug.Log("In Left");                
-                nextRotationTransformation = new Vector3(rotationSpeed, neutralSpeed);
-            }
-
-            if (JoystickInputCalibration.isPositive(eventValue.x, movementThresholdDiagonal) && JoystickInputCalibration.isPositive(eventValue.y, movementThresholdDiagonal))
-            {
-                // Up Right
-                Debug.Log("In Up Right");
-                nextRotationTransformation = new Vector3(negativeRotationSpeed, rotationSpeed);
-            }
-            
-            if (JoystickInputCalibration.isPositive(eventValue.x, movementThresholdDiagonal) && JoystickInputCalibration.isNegative(eventValue.y, movementThresholdDiagonal))
-            {
-                // Down Right
-                Debug.Log("In Down Right");
-                nextRotationTransformation = new Vector3(rotationSpeed, rotationSpeed);
-            }
-            
-            if (JoystickInputCalibration.isNegative(eventValue.x, movementThresholdDiagonal) && JoystickInputCalibration.isPositive(eventValue.y, movementThresholdDiagonal))
-            {
-                // Up Left
-                Debug.Log("In Up Left");
-                nextRotationTransformation = new Vector3(negativeRotationSpeed, negativeRotationSpeed);
-            }
-            
-            if (JoystickInputCalibration.isNegative(eventValue.x, movementThresholdDiagonal) && JoystickInputCalibration.isNegative(eventValue.y, movementThresholdDiagonal))
-            {
-                // Down Left
-                Debug.Log("In Down Left");
-                nextRotationTransformation = new Vector3(rotationSpeed, negativeRotationSpeed);
-            }
-        }
-        catch
-        {
-            // Stop rotation.
-            nextRotationTransformation = new Vector3(neutralSpeed, neutralSpeed);
-        }
+        nextRotationTransformation = JoystickInputCalibration.getNextInput(value, true,movementThreshold, movementThresholdDiagonal, neutralSpeed, rotationSpeed, negativeRotationSpeed);
+        Debug.Log("nextRotationTransformation: " + nextRotationTransformation);
     }
 
     public void OnStickTwist(InputValue value)
