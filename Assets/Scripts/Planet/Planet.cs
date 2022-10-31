@@ -17,7 +17,8 @@ public class Planet : MonoBehaviour
     [HideInInspector]
     public bool shapeSettingsFoldout, colorSettingsFoldout;
 
-    ShapeGenerator shapeGenerator;
+    ShapeGenerator shapeGenerator = new ShapeGenerator();
+    ColorGenerator colorGenerator = new ColorGenerator();
 
     [SerializeField, HideInInspector]
     MeshFilter[] meshFilters;
@@ -25,7 +26,8 @@ public class Planet : MonoBehaviour
 
     void Initialize()
     {
-        shapeGenerator = new ShapeGenerator(shapeSettings);
+        shapeGenerator.UpdateSettings(shapeSettings);
+        colorGenerator.UpdateSettings(colorSettings);
 
         if (meshFilters == null || meshFilters.Length == 0)
             meshFilters = new MeshFilter[6];
@@ -40,11 +42,13 @@ public class Planet : MonoBehaviour
             {
                 var meshObject = new GameObject("Mesh");
                 meshObject.transform.parent = transform;
-                meshObject.AddComponent<MeshRenderer>().sharedMaterial = new Material(Shader.Find("Standard"));
+                meshObject.AddComponent<MeshRenderer>();
 
                 meshFilters[index] = meshObject.AddComponent<MeshFilter>();
                 meshFilters[index].sharedMesh = new Mesh();
             }
+            meshFilters[index].GetComponent<MeshRenderer>().sharedMaterial = colorSettings.material;
+
             terrainFaces[index] = new TerrainFace(shapeGenerator, meshFilters[index].sharedMesh, resolution, directions[index]);
             var renderFace = faceRenderMask == FaceRenderMask.all || (int)faceRenderMask - 1 == index;
             meshFilters[index].gameObject.SetActive(renderFace);
@@ -56,20 +60,17 @@ public class Planet : MonoBehaviour
         for (var index = 0; index < 6; index++)
             if (meshFilters[index].gameObject.activeSelf)
                 terrainFaces[index].ConstructMesh();
+
+        colorGenerator.UpdateElevation(shapeGenerator.minMax);
     }
 
     void GenerateColors()
     {
-        foreach (var filter in meshFilters)
-        {
-            if (!filter.TryGetComponent<MeshRenderer>(out var meshRenderer))
-                Debug.LogError("Reality is broken");
+        colorGenerator.UpdateColors();
 
-            if (meshRenderer.sharedMaterial == null)
-                Debug.LogError("Reality is broken, again.");
-
-            meshRenderer.material.color = colorSettings.planetColor;
-        }
+        for (var index = 0; index < 6; index++)
+            if (meshFilters[index].gameObject.activeSelf)
+                terrainFaces[index].UpdateUVs(colorGenerator);
     }
 
     #region Handlers
